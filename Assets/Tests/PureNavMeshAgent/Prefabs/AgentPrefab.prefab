@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PriorityRange:
-    MinValue: 80
+    MinValue: 50
     MaxValue: 90
-  TargetTransform: {fileID: 0}
+  TargetAgent: {fileID: 0}
   Agent: {fileID: 5709659243547630118}

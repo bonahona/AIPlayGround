@@ -1,4 +1,5 @@
 using Shared;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,9 +25,14 @@ namespace Tests.PureNavMeshAgent {
 
         private void Update()
         {
+            if(DestinationReached()) {
+                return;
+            }
+
             Agent.SetDestination(TargetAgent.transform.position - GetOffset());
         }
 
+        private bool DestinationReached() => (Agent.transform.position - Agent.pathEndPosition).sqrMagnitude < 0.0001f;
         private Vector3 GetOffset() => (TargetAgent.transform.position - Agent.transform.position).normalized * (TargetAgent.radius + Agent.radius);
     }
 }
