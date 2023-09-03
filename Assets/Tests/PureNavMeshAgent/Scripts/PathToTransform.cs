@@ -7,14 +7,14 @@ namespace Tests.PureNavMeshAgent {
     public class PathToTransform : MonoBehaviour
     {
         public ValueRange PriorityRange;
-        public Transform TargetTransform;
+        public NavMeshObstacle TargetAgent;
 
         [Header("Components")]
         public NavMeshAgent Agent;
 
         private void Start()
         {
-            if(TargetTransform == null ) {
+            if(TargetAgent == null ) {
                 gameObject.SetActive(false);
             }
 
@@ -24,7 +24,9 @@ namespace Tests.PureNavMeshAgent {
 
         private void Update()
         {
-            Agent.SetDestination(TargetTransform.position);
+            Agent.SetDestination(TargetAgent.transform.position - GetOffset());
         }
+
+        private Vector3 GetOffset() => (TargetAgent.transform.position - Agent.transform.position).normalized * (TargetAgent.radius + Agent.radius);
     }
 }
